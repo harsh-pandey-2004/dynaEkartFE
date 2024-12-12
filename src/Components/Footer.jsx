@@ -32,7 +32,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/yellowboot"
+                to="/yellowboots"
                 className="hover:underline text-white  cursor-pointer text-sm md:text-base"
               >
                 Yellow Boot
@@ -70,7 +70,7 @@ const Footer = () => {
             </li>
             <li>
               <Link
-                to="/yellowboot"
+                to="/Trackorder"
                 className="hover:underline text-white  cursor-pointer text-sm md:text-base"
               >
                 Tract an Order
@@ -119,7 +119,7 @@ const Footer = () => {
                 to="/responsiblity"
                 className="hover:underline text-white  cursor-pointer text-sm md:text-base"
               >
-                responsiblity
+                Responsiblity
               </Link>
             </li>
           </ul>
@@ -130,7 +130,7 @@ const Footer = () => {
           <ul>
             <li>
               <Link
-                to="Leavefeedback"
+                to="/leavefeedback"
                 className="hover:underline text-white  cursor-pointer text-sm md:text-base"
               >
                 Leave & Feedback

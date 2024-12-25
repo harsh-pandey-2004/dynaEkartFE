@@ -1,3 +1,23 @@
+:root {
+  --primary-color: #273293a2;
+  --secondary-color: #273293;
+  --fade: #0000005f;
+  --background-primary: #f4f6f9;
+  --line-color: rgb(224, 224, 224);
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.foot {
+  background-color: #02071f;
+}
+.foot1 {
+  background-color: black;
+}

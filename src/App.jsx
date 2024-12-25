@@ -1,7 +1,5 @@
 import React from "react";
-
 import Home from "./components/Home";
-
 import Topbar from "./components/Topbar";
 import Navbar from "./components/Navbar";
 import { Route, Routes } from "react-router-dom";

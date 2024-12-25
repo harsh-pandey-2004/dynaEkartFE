@@ -13,11 +13,13 @@ import Order from "./components/Order";
 import Cart from "./components/Cart";
 import Account from "./components/Account";
 import Category from "./components/Category";
+
 const App = () => {
   return (
     <div>
       <Topbar />
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/shop" element={<Shop />} />

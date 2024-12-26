@@ -1,14 +1,10 @@
-import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
+import { Route, Routes } from "react-router-dom";
 import Home from './Pages/Home';
 import Profile from './Pages/Profile';
 import React from "react";
-import Home from "./components/Home";
 import Topbar from "./components/Topbar";
 import Navbar from "./components/Navbar";
-import { Route, Routes } from "react-router-dom";
 import Shop from "./components/Shop";
-import cart from "./components/Cart";
-import account from "./components/Account";
 import Blog from "./components/Blog";
 import Order from "./components/Order";
 import Cart from "./components/Cart";

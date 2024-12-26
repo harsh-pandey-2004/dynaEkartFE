@@ -1,3 +1,18 @@
+import React from "react";
+import Home from "./components/Home";
+import Topbar from "./components/Topbar";
+import Navbar from "./components/Navbar";
+import { Route, Routes } from "react-router-dom";
+import Shop from "./components/Shop";
+import cart from "./components/Cart";
+import account from "./components/Account";
+import Blog from "./components/Blog";
+import Order from "./components/Order";
+import Cart from "./components/Cart";
+import Account from "./components/Account";
+import Category from "./components/Category";
+
+const App = () => {
 import { useState } from 'react'
 
 import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
@@ -7,16 +22,21 @@ function App() {
   const [count, setCount] = useState(0)
 
   return (
-  <>
-    <BrowserRouter>
-    <Routes>
-      <Route path='/' element={<Home/>}/>
-      <Route path='/profile' element={<Profile/>}/>
-    
-    </Routes>
-    </BrowserRouter>
-    </>
-  )
-}
+    <div>
+      <Topbar />
+      <Navbar />
 
-export default App
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
+        <Route path="/account" element={<Account />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/category" element={<Category />} />
+      </Routes>
+    </div>
+  );
+};
+
+export default App;

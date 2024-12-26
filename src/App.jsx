@@ -11,6 +11,7 @@ import Order from "./components/Order";
 import Cart from "./components/Cart";
 import Account from "./components/Account";
 import Category from "./components/Category";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/category" element={<Category />} />
       </Routes>
+      <Footer/>
     </div>
   );
 };

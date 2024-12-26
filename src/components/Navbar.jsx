@@ -38,7 +38,7 @@ const Navbar = () => {
   }
 
   return (
-    <div className="container bg-black p-4">
+    <div className=" bg-black p-4">
       <div className="grid grid-cols-12 gap-4">
         <div className="col-span-2 flex justify-around">
           <p className="text-white text-sm">nikhil</p>

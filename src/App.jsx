@@ -1,3 +1,6 @@
+import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
+import Home from './Pages/Home';
+import Profile from './Pages/Profile';
 import React from "react";
 import Home from "./components/Home";
 import Topbar from "./components/Topbar";
@@ -13,14 +16,6 @@ import Account from "./components/Account";
 import Category from "./components/Category";
 
 const App = () => {
-import { useState } from 'react'
-
-import { BrowserRouter as Router, Route, Routes, Link, BrowserRouter } from 'react-router-dom';
-import Home from './Pages/Home';
-import Profile from './Pages/Profile';
-function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <div>
       <Topbar />
@@ -32,6 +27,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/order" element={<Order />} />
         <Route path="/account" element={<Account />} />
+        <Route path='/profile' element={<Profile/>}/>
         <Route path="/blog" element={<Blog />} />
         <Route path="/category" element={<Category />} />
       </Routes>

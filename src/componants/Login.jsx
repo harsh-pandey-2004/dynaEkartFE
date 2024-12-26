@@ -24,7 +24,9 @@ const Login = () => {
           <div className="mb-4">
             <label
               htmlFor="phone"
-              className="block text-sm font-medium text-gray-600"
+              className="block text-sm font-medium text-gray-700"
+
+
             >
               Phone Number
             </label>

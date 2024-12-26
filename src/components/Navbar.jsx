@@ -35,8 +35,10 @@ const Navbar = () => {
   return (
     <div className="container bg-black p-4">
       <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-2"></div>
-        <div className="col-span-8">
+        <div className="col-span-2 flex justify-around">
+          <p className="text-white text-sm">nikhil</p>
+        </div>
+        <div className="col-span-8 hidden sm:block">
           <div className="flex justify-between">
             {navBarData.map((item) => (
               <NavLink

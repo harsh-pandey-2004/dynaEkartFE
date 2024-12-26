@@ -1,59 +1,41 @@
-import React from "react";
-
-const popularCategories = [
-  {
-    id: 1,
-    name: "Category 1",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+1",
-  },
-  {
-    id: 2,
-    name: "Category 2",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+2",
-  },
-  {
-    id: 3,
-    name: "Category 3",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+3",
-  },
-  {
-    id: 4,
-    name: "Category 4",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+4",
-  },
-  {
-    id: 5,
-    name: "Category 5",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+5",
-  },
-  {
-    id: 6,
-    name: "Category 6",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+6",
-  },
-  {
-    id: 7,
-    name: "Category 7",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+7",
-  },
-  {
-    id: 8,
-    name: "Category 7",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+7",
-  },
-  {
-    id: 9,
-    name: "Category 7",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+7",
-  },
-  {
-    id: 10,
-    name: "Category 7",
-    imageUrl: "https://via.placeholder.com/300x300?text=Category+7",
-  },
-];
+import React, { useState, useEffect } from "react"; // Import useEffect
+import axios from 'axios';
 
 const PopularProducts = () => {
+  const [categories, setCategories] = useState([]);  // Rename the state to categories
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {  // useEffect is now imported
+    axios
+      .get("http://localhost:3000/category/getitems")  // Corrected URL
+      .then((response) => {
+        console.log(response.data.data);
+        setCategories(response.data.data);  // Renamed state to categories
+        setLoading(false);
+      })
+      .catch((err) => {
+        setError("Failed to fetch category data");
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="text-center py-16">
+        <p className="text-xl">Loading...</p>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-center py-16">
+        <p className="text-xl text-red-500">{error}</p>
+      </div>
+    );
+  }
+
   return (
     <section className="py-10 w-full bg-gray-50">
       <div className="max-w-full mx-auto px-2 sm:px-6 lg:px-8">
@@ -66,14 +48,14 @@ const PopularProducts = () => {
           </button>
         </div>
 
-        <div className="grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {popularCategories.map((category) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {categories.map((category) => (  // Renamed map variable to avoid conflict
             <div
               key={category.id}
               className="bg-white p-2 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 ease-in-out"
             >
               <img
-                src={category.imageUrl}
+                src={category.categorylogo}
                 alt={category.name}
                 className="w-full h-52 object-cover rounded-t-lg mb-4"
               />

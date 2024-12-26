@@ -2,7 +2,7 @@ import React from "react";
 import Searchbar from "./Searchbar";
 const Topbar = () => {
   return (
-    <div className="container p-5">
+    <div className=" p-5">
       <div className="grid grid-cols-12 gap-4">
         {/* logo*/}
         <div className="col-span-3 md:justify-items-center justify-between  text-center">

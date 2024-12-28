@@ -9,7 +9,7 @@ const Blog = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/blog/getblog");
+        const response = await axios.get("http://localhost:5000/blog/getblog");
         console.log(response);
         setData(response.data.data);
       } catch (err) {
@@ -43,7 +43,7 @@ const Blog = () => {
                 {blog?.title}
               </p>
               <h3 className="text-xl font-bold truncate">
-                <a href={blog?.link}>{blog.heading}</a>
+                <a href={blog?.link}>{blog.header}</a>
               </h3>
               <a href={blog?.link}>
                 <button className="text-blue-700 hover:underline">

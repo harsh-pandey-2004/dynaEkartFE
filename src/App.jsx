@@ -11,7 +11,7 @@ import Cart from "./components/Cart";
 import Account from "./components/Account";
 import Category from "./components/Category";
 import Footer from "./components/Footer";
-import CustomerReviews from "./components/Product";
+import Products from "./components/Product";
 const App = () => {
   return (
     <div>
@@ -26,7 +26,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/category" element={<Category />} />
-        <Route path="/product" element={<CustomerReviews />} />
+        <Route path="/product" element={<Products />} />
       </Routes>
       <Footer />
     </div>

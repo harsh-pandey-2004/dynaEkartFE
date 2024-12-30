@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 
-const CustomerReviews = () => {
+const Products = () => {
+  const [selectedColor, setSelectedColor] = useState("");
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+  };
+
   const [activeTab, setActiveTab] = useState("reviews");
 
   const reviews = [
@@ -63,7 +68,67 @@ const CustomerReviews = () => {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-12">
-      <div className="flex flex-col sm:flex-row sm:space-x-8 mb-6 space-y-4 sm:space-y-0">
+      <div className="max-w-full bg-white border shadow-lg rounded-lg overflow-hidden flex gap-6">
+        <div className=" w-1/2">
+          <img
+            src="https://images.unsplash.com/photo-1589003077984-894e133dabab?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+            alt="Product"
+          />
+        </div>
+        <div className="py-4 w-1/2">
+          <h1 className="text-3xl font-bold">
+            Divoom Tivoo Portable Bluetooth Speaker Smart Clock Alarm Pixel Art
+            DIY By App LED Light Sign In Decoration Unique Gift
+          </h1>
+          <div className="flex items-center space-x-4 my-4">
+            <p className="text-lg line-through text-gray-700">$600.00</p>
+            <p className="text-xl font-semibold text-blue-600">$580.00</p>
+          </div>
+          <div className="text-md text-gray-700 mb-2">
+            <span>50 people are viewing this right now</span>
+          </div>
+          <p className="text-md text-green-600 font-medium">
+            You are saving $20.00 upon purchase
+          </p>
+          <div className="mt-4">
+            <h3 className="font-medium text-gray-700">Color:</h3>
+            <div className="flex items-center mt-2 space-x-5">
+              {["red", "blue", "green", "yellow", "black"].map((color) => (
+                <button
+                  key={color}
+                  className={`w-8 h-8 rounded-full border ${
+                    selectedColor === color
+                      ? "border-blue-500"
+                      : "border-gray-300"
+                  }`}
+                  style={{ backgroundColor: color }}
+                  onClick={() => handleColorSelect(color)}
+                ></button>
+              ))}
+              <button
+                className="text-gray-700 underline text-sm font-bold"
+                onClick={() => setSelectedColor("")}
+              >
+                Clear
+              </button>
+            </div>
+          </div>
+          <div className="mt-4">
+            <p className="text-md">
+              <span className="font-medium">Brand:</span> Samsung
+            </p>
+            <p className="text-md">
+              <span className="font-medium">Category:</span> TV & Audio
+            </p>
+          </div>
+          <div className="mt-6">
+            <button className="w-3/4 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-md">
+              BUY NOW
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="flex flex-col sm:flex-row sm:space-x-8 my-10 space-y-4 sm:space-y-0">
         <button
           onClick={() => setActiveTab("reviews")}
           className={`font-semibold ${
@@ -138,4 +203,4 @@ const CustomerReviews = () => {
   );
 };
 
-export default CustomerReviews;
+export default Products;

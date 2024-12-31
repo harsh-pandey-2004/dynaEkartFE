@@ -68,15 +68,16 @@ const Products = () => {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-12">
-      <div className="max-w-full bg-white border shadow-lg rounded-lg overflow-hidden flex gap-6">
-        <div className=" w-1/2">
+      <div className="max-w-full bg-white border shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
+        <div className="w-full md:w-1/2">
           <img
             src="https://images.unsplash.com/photo-1589003077984-894e133dabab?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Product"
+            className="w-full h-full"
           />
         </div>
-        <div className="py-4 w-1/2">
-          <h1 className="text-3xl font-bold">
+        <div className="py-4 px-4 w-full md:w-1/2">
+          <h1 className="text-xl xl:text-3xl font-bold  ">
             Divoom Tivoo Portable Bluetooth Speaker Smart Clock Alarm Pixel Art
             DIY By App LED Light Sign In Decoration Unique Gift
           </h1>
@@ -122,7 +123,7 @@ const Products = () => {
             </p>
           </div>
           <div className="mt-6">
-            <button className="w-3/4 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-md">
+            <button className="w-full md:w-3/4 bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-md">
               BUY NOW
             </button>
           </div>
@@ -153,14 +154,14 @@ const Products = () => {
           onClick={() => setActiveTab("license")}
           className={`font-semibold ${
             activeTab === "license"
-              ? "text-blue-600 border-b-2 border-blue-600"
+              ? "text-blue-600 border-b-5 border-blue-600"
               : "text-gray-700"
           }`}
         >
           License
         </button>
       </div>
-      <div className="divide-y divide-blue-600">
+      <div className="divide-y divide-gray-700">
         {activeTab === "reviews" &&
           reviews.map((review) => (
             <div

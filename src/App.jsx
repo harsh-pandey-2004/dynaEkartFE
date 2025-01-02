@@ -9,8 +9,8 @@ import Blog from "./components/Blog";
 import Order from "./components/Order";
 import Cart from "./components/Cart";
 import Account from "./components/Account";
-import Category from "./components/Category";
 import Footer from "./components/Footer";
+import Category from './Pages/Category'
 
 const App = () => {
   return (
@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/account" element={<Account />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/category" element={<Category />} />
+        <Route path="/category" element={<Category/>} />
       </Routes>
       <Footer />
     </div>

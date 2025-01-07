@@ -62,7 +62,7 @@ const PopularProducts = () => {
                   alt={category.name}
                   className="w-full h-52 object-cover rounded-t-lg mb-4"
                 />
-                <h3 className="text-lg font-medium text-gray-800 mb-2">
+                <h3 className="text-lg font-medium text-gray-800 mb-2"> 
                   {category.name}
                 </h3>
               </div>

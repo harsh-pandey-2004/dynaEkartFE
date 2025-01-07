@@ -59,7 +59,6 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Right Section */}
         <div className="col-span-2"></div>
       </div>
     </div>

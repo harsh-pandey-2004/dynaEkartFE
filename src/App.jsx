@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 import Products from "./components/Product";
 const App = () => {
   return (
-    <div>
+    <>
       <Topbar />
       <Navbar />
       <Routes>
@@ -26,10 +26,10 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/category" element={<Category />} />
-        <Route path="/product" element={<Products />} />
+        <Route path="/product/:id" element={<Products />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 };
 

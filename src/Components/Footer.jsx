@@ -1,29 +1,31 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { fetchFooterItems } from "../network/Footer"; // Import the API call
 import {
   FaTwitter,
   FaFacebookSquare,
   FaInstagramSquare,
   FaYoutube,
 } from "react-icons/fa";
-import axios from "axios";
 
 const Footer = () => {
   const [footerData, setFooterData] = useState(null);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3000/footer/getitems")
-      .then((response) => {
+    const getFooterData = async () => {
+      try {
+        const data = await fetchFooterItems(); // Use the imported function
         const transformedData = {};
-        response.data.data.forEach((section) => {
+        data.forEach((section) => {
           transformedData[section.headersection] = section.Items;
         });
         setFooterData(transformedData);
-      })
-      .catch((error) => {
-        console.error("Error fetching footer data:", error);
-      });
+      } catch (error) {
+        console.error("Error fetching footer data:", error.message);
+      }
+    };
+
+    getFooterData();
   }, []);
 
   if (!footerData) {
@@ -83,7 +85,7 @@ const Footer = () => {
                   >
                     {item.itemname}
                   </Link>
-                </li> 
+                </li>
               ))}
             </ul>
           </div>

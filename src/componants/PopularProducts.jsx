@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react"; // Import useEffect
-import axios from 'axios';
+import axios from "axios";
 
 const PopularProducts = () => {
-  const [categories, setCategories] = useState([]);  // Rename the state to categories
+  const [categories, setCategories] = useState([]); // Rename the state to categories
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {  // useEffect is now imported
+  useEffect(() => {
+    // useEffect is now imported
     axios
-      .get("http://localhost:3000/category/getitems")  // Corrected URL
+      .get("http://localhost:3000/category/getitems") // Corrected URL
       .then((response) => {
         console.log(response.data.data);
-        setCategories(response.data.data);  // Renamed state to categories
+        setCategories(response.data.data); // Renamed state to categories
         setLoading(false);
       })
       .catch((err) => {
@@ -49,21 +50,25 @@ const PopularProducts = () => {
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-          {categories.map((category) => (  // Renamed map variable to avoid conflict
-            <div
-              key={category.id}
-              className="bg-white p-2 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 ease-in-out"
-            >
-              <img
-                src={category.categorylogo}
-                alt={category.name}
-                className="w-full h-52 object-cover rounded-t-lg mb-4"
-              />
-              <h3 className="text-lg font-medium text-gray-800 mb-2">
-                {category.name}
-              </h3>
-            </div>
-          ))}
+          {categories.map(
+            (
+              category // Renamed map variable to avoid conflict
+            ) => (
+              <div
+                key={category.id}
+                className="bg-white p-2 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 ease-in-out"
+              >
+                <img
+                  src={category.categorylogo}
+                  alt={category.name}
+                  className="w-full h-52 object-cover rounded-t-lg mb-4"
+                />
+                <h3 className="text-lg font-medium text-gray-800 mb-2">
+                  {category.name}
+                </h3>
+              </div>
+            )
+          )}
         </div>
       </div>
     </section>

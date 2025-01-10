@@ -2,20 +2,20 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const BrandsWeDistribute = () => {
-  const [brands, setBrands] = useState([]);  
-  const [loading, setLoading] = useState(true);  
-  const [error, setError] = useState(null); 
+  const [brands, setBrands] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     axios
       .get("http://localhost:3000/brand/get")
       .then((response) => {
         console.log(response.data.data);
-        setBrands(response.data.data);  // Set the brand data
-        setLoading(false); 
+        setBrands(response.data.data);
+        setLoading(false);
       })
       .catch((err) => {
-        setError("Failed to fetch brands data"); 
+        setError("Failed to fetch brands data");
         setLoading(false);
       });
   }, []);

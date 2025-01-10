@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { fetchBlogs } from "../network/Blog"; // Import the API call
 import { toast } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
 
@@ -11,8 +11,8 @@ const Blog = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:3000/blog/getblog");
-      setData(response.data.data);
+      const blogs = await fetchBlogs();
+      setData(blogs);
     } catch (error) {
       setError(error.message);
       toast.error(error.message);

@@ -11,10 +11,10 @@ import Cart from "./components/Cart";
 import Account from "./components/Account";
 import Category from "./components/Category";
 import Footer from "./components/Footer";
-
+import Products from "./components/Product";
 const App = () => {
   return (
-    <div>
+    <>
       <Topbar />
       <Navbar />
       <Routes>
@@ -26,9 +26,10 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/category" element={<Category />} />
+        <Route path="/product/:id" element={<Products />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 };
 

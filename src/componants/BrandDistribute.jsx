@@ -11,7 +11,11 @@ const BrandsWeDistribute = () => {
       .get("http://localhost:3000/brand/get")
       .then((response) => {
         console.log(response.data.data);
+<<<<<<< HEAD
         setBrands(response.data.data);
+=======
+        setBrands(response.data.data); // Set the brand data
+>>>>>>> 65f5dd39ef2c77a076ecb92b9e8df2e07ff6f1df
         setLoading(false);
       })
       .catch((err) => {

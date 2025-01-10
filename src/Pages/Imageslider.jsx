@@ -27,22 +27,37 @@ const Imageslider = () => {
   };
 
   return (
-    <div className="relative w-full   ">
-      <div className="relative h-auto overflow-hidden rounded-lg md:h-96">
-        {images.map((image, index) => (
-          <div
+    <>
+      <div className=" w-full sm:h-screen ">
+        <div className="   ">
+          {images.map((image, index) => (
+            <div
+              key={index}
+              className={`carousel-item ${
+                index === currentItem ? "" : "hidden"
+              }`}
+            >
+              <img
+                src={image}
+                className="w-full h-full bg-cover bg-center"
+                alt={`Slide ${index + 1}`}
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="  flex justify-center space-x-2 mt-5 sm:mt-2">
+        {images.map((_, index) => (
+          <button
             key={index}
-            className={`carousel-item ${index === currentItem ? "" : "hidden"}`}
-          >
-            <img
-              src={image}
-              className="w-full h-full object-cover"
-              alt={`Slide ${index + 1}`}
-            />
-          </div>
+            onClick={() => goToItem(index)}
+            className={`w-3 h-3 rounded-full ${
+              index === currentItem ? "bg-black" : "bg-gray-300"
+            }`}
+          ></button>
         ))}
       </div>
-    </div>
+    </>
   );
 };
 

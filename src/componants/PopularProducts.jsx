@@ -9,7 +9,7 @@ const PopularProducts = () => {
   useEffect(() => {
     // useEffect is now imported
     axios
-      .get("http://localhost:3500/category/getitems") // Corrected URL
+      .get("http://localhost:3000/category/getitems") // Corrected URL
       .then((response) => {
         console.log(response.data.data);
         setCategories(response.data.data); // Renamed state to categories

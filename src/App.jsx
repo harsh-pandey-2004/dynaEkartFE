@@ -11,7 +11,7 @@ import Order from "./components/Order";
 import Cart from "./components/Cart";
 import Account from "./components/Account";
 import Category from "./components/Category";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Products from "./components/Product";
 const App = () => {
   return (
@@ -29,7 +29,7 @@ const App = () => {
         <Route path="/category" element={<Category />} />
         <Route path="/product/:id" element={<Products />} />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

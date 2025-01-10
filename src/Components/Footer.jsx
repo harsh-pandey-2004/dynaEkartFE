@@ -32,7 +32,7 @@ const Footer = () => {
 
   return (
     <footer className="foot py-8 h-auto bg-black">
-      <div className="grid grid-cols-1 mx-2 gap-6 px-4 sm:grid-cols-2 md:grid-cols-4">
+      <div className="grid grid-cols-1 mx-20 gap-6 px-4 sm:grid-cols-2 md:grid-cols-4 ">
         {footerData["Top Categories"] && (
           <div>
             <h1 className="font-bold mb-4 text-white text-lg">
@@ -83,7 +83,7 @@ const Footer = () => {
                   >
                     {item.itemname}
                   </Link>
-                </li>
+                </li> 
               ))}
             </ul>
           </div>
@@ -109,7 +109,7 @@ const Footer = () => {
       </div>
 
       {footerData["Follow Us"] && (
-        <div className="foot1 h-auto w-full absolute mt-8 py-8 bg-black px-10">
+        <div className="foot1 h-auto w-full absolute mt-8 py-8 bg-black px-20">
           <div className="flex justify-end items-center">
             <div className="text-right md:w-1/3">
               <h1 className="text-white text-lg font-bold px-6 mb-2">
@@ -130,4 +130,3 @@ const Footer = () => {
 };
 
 export default Footer;
- 

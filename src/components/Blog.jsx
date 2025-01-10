@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchBlogs } from "../network/Blog"; // Import the API call
+import { fetchBlogs } from "../network/Blog";
 import { toast } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
 

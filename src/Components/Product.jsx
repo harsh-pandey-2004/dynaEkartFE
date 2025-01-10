@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
 import { toast } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
+import { fetchProduct } from "../network/product";
+import { useParams } from "react-router-dom";
 
 const Products = () => {
   const { id } = useParams();
@@ -15,10 +15,8 @@ const Products = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(
-        `http://localhost:3000/product/product/${id}`
-      );
-      setProduct(response.data.data);
+      const response = await fetchProduct(id);
+      setProduct(response);
     } catch (err) {
       setError(err.message);
       toast.error(err.message);
@@ -42,6 +40,34 @@ const Products = () => {
       rating: 3,
       text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur eligendi praesentium fugit, dolore aut voluptate corporis quas! Quas dolore tempore deleniti aut facilis recusandae maiores, tenetur nesciunt placeat cupiditate molestiae excepturi atque, dolor corrupti aperiam necessitatibus labore debitis nisi nobis id obcaecati repellendus quos velit. Iste repudiandae dicta similique.",
       image: "user1.avif",
+    },
+    {
+      name: "Hector Gibbons",
+      date: "July 12, 2021",
+      rating: 5,
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur eligendi praesentium fugit, dolore aut voluptate corporis quas! Quas dolore tempore deleniti aut facilis recusandae maiores, tenetur nesciunt placeat cupiditate molestiae excepturi atque, dolor corrupti aperiam necessitatibus labore debitis nisi nobis id obcaecati repellendus quos velit. Iste repudiandae dicta similique.",
+      image: "user2.avif",
+    },
+    {
+      name: "Hector Gibbons",
+      date: "July 12, 2021",
+      rating: 5,
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur eligendi praesentium fugit, dolore aut voluptate corporis quas! Quas dolore tempore deleniti aut facilis recusandae maiores, tenetur nesciunt placeat cupiditate molestiae excepturi atque, dolor corrupti aperiam necessitatibus labore debitis nisi nobis id obcaecati repellendus quos velit. Iste repudiandae dicta similique.",
+      image: "user2.avif",
+    },
+    {
+      name: "Hector Gibbons",
+      date: "July 12, 2021",
+      rating: 5,
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur eligendi praesentium fugit, dolore aut voluptate corporis quas! Quas dolore tempore deleniti aut facilis recusandae maiores, tenetur nesciunt placeat cupiditate molestiae excepturi atque, dolor corrupti aperiam necessitatibus labore debitis nisi nobis id obcaecati repellendus quos velit. Iste repudiandae dicta similique.",
+      image: "user2.avif",
+    },
+    {
+      name: "Hector Gibbons",
+      date: "July 12, 2021",
+      rating: 5,
+      text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Consectetur eligendi praesentium fugit, dolore aut voluptate corporis quas! Quas dolore tempore deleniti aut facilis recusandae maiores, tenetur nesciunt placeat cupiditate molestiae excepturi atque, dolor corrupti aperiam necessitatibus labore debitis nisi nobis id obcaecati repellendus quos velit. Iste repudiandae dicta similique.",
+      image: "user2.avif",
     },
     {
       name: "Hector Gibbons",
@@ -111,11 +137,11 @@ const Products = () => {
       ) : (
         <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-12">
           <div className="max-w-full bg-white border shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row">
-            <div className="w-full md:w-1/2">
+            <div className="w-full md:w-1/2 flex justify-center p-4">
               <img
-                src={product?.imgUrl}
+                src={product?.imageUrl}
                 alt={product?.name}
-                className="w-full h-full"
+                className="w-1/2"
               />
             </div>
             <div className="py-4 px-4 w-full md:w-1/2">
@@ -207,10 +233,10 @@ const Products = () => {
           </div>
           <div className="divide-y divide-gray-700">
             {activeTab === "reviews" &&
-              reviews.map((review, index) => (
+              reviews.slice(0, 2).map((review, index) => (
                 <div
                   key={index}
-                  className="py-6 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+                  className="py-4 flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
                 >
                   <img
                     src={review?.image}
@@ -238,11 +264,9 @@ const Products = () => {
                 </div>
               ))}
 
-            {activeTab === "faq" && <div className="py-6">{faqContent}</div>}
+            {activeTab === "faq" && <div>{faqContent}</div>}
 
-            {activeTab === "license" && (
-              <div className="py-6">{licenseContent}</div>
-            )}
+            {activeTab === "license" && <div>{licenseContent}</div>}
           </div>
         </div>
       )}

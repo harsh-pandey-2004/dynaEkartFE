@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Category from "./Category";
 import axios from "axios";
 
 const Navbar = () => {
@@ -11,15 +12,12 @@ const Navbar = () => {
     const fetchNavbarData = async () => {
       try {
         const response = await axios.get("http://localhost:3000/navbar/get");
-        console.log("API Response:", response.data);
         if (response.data && response.data.data) {
           setNavBarData(response.data.data);
         } else {
-          console.error("Data not found in API response");
           setError("Unexpected API response structure");
         }
       } catch (err) {
-        console.error("Error fetching navigation data:", err);
         setError("Failed to fetch navigation data");
       } finally {
         setLoading(false);
@@ -38,10 +36,10 @@ const Navbar = () => {
   }
 
   return (
-    <div className=" bg-black p-4">
+    <div className="bg-black p-4">
       <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-2 flex justify-around">
-          <p className="text-white text-sm">nikhil</p>
+        <div className="col-span-2 flex justify-around relative">
+          <Category />
         </div>
 
         <div className="col-span-8 hidden sm:block">

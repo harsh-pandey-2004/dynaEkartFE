@@ -56,6 +56,8 @@ const Navbar = () => {
             ))}
           </div>
         </div>
+
+        <div className="col-span-2"></div>
       </div>
     </div>
   );

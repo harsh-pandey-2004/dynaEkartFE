@@ -9,8 +9,8 @@ import Order from "./components/Order";
 import Cart from "./components/Cart";
 import Account from "./components/Account";
 import Category from "./components/Category";
-import Footer from "./Components/Footer";
-import Products from "./Components/Product";
+import Footer from "./components/Footer";
+import Products from "./components/Product";
 const App = () => {
   return (
     <>
@@ -25,7 +25,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/category" element={<Category />} />
-        <Route path="/product/:id" element={<Products />} />
+        <Route path="/product" element={<Products />} />
       </Routes>
       <Footer />
     </>

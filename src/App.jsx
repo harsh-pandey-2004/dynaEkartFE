@@ -1,7 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
 import Profile from "./Pages/Profile";
-import React from "react";
 import Topbar from "./components/Topbar";
 import Navbar from "./components/Navbar";
 import Shop from "./components/Shop";
@@ -10,11 +9,11 @@ import Order from "./components/Order";
 import Cart from "./components/Cart";
 import Account from "./components/Account";
 import Category from "./components/Category";
-import Footer from "./components/Footer";
-
+import Footer from "./Components/Footer";
+import Products from "./Components/Product";
 const App = () => {
   return (
-    <div>
+    <>
       <Topbar />
       <Navbar />
       <Routes>
@@ -26,9 +25,10 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/category" element={<Category />} />
+        <Route path="/product/:id" element={<Products />} />
       </Routes>
       <Footer />
-    </div>
+    </>
   );
 };
 

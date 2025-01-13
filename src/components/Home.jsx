@@ -1,11 +1,5 @@
-import React from "react";
-import Slider from "./Slider";
-const Home = () => {
-  return (
-    <div>
-      <Slider />
-    </div>
-  );
-};
+// const Home = () => {
+//   return <div></div>;
+// };
 
-export default Home;
+// export default Home;

@@ -4,15 +4,14 @@ const Topbar = () => {
   return (
     <div className=" p-5">
       <div className="grid grid-cols-12 gap-4">
-        {/* logo*/}
         <div className="col-span-3 md:justify-items-center justify-between  text-center">
           logo
         </div>
-        {/* saearch */}
+
         <div className="col-span-6  ">
           <Searchbar />
         </div>
-        {/* icon */}
+
         <div className="col-span-3 text-center flex justify-center gap-2 md:gap-7">
           <div>
             <svg

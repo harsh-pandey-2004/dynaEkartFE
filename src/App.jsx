@@ -25,7 +25,8 @@ const App = () => {
         <Route path="/account" element={<Account />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/blog" element={<Blog />} />
-        <Route path="/category" element={<Category/>} />
+        <Route path="/category/:categoryName" element={<Category />} />
+       
       </Routes>
       <Footer />
     </div>

@@ -13,6 +13,7 @@ const PopularSearch = () => {
     "Audio",
     "Laptop & Computers",
     "Cell Phone",
+    
   ];
 
 

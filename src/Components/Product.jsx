@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
-import { fetchProduct } from "../network/product";
+import { fetchProduct } from "../network/Product";
 import { useParams } from "react-router-dom";
 
 const Products = () => {

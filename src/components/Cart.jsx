@@ -63,7 +63,7 @@ const Cart = () => {
             </div>
             <div className="flex justify-between  my-4">
               <p className="text-black text-xl font-bold">Order Total</p>
-              <p className="text-black text-xl font-bold"> $620.00</p>
+              <p className="text-blue-600 text-xl font-bold"> $620.00</p>
             </div>
             <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-md">
               BUY NOW

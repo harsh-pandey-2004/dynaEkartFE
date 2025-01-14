@@ -8,9 +8,9 @@ import Blog from "./components/Blog";
 import Order from "./components/Order";
 import Cart from "./components/Cart";
 import Account from "./components/Account";
-import Category from "./components/Category";
-import Footer from "./Components/Footer";
-import Products from "./Components/Product";
+import Category from "./Pages/Category";
+import Footer from "./components/Footer";
+import Products from "./components/Product";
 const App = () => {
   return (
     <>

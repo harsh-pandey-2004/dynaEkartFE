@@ -1,6 +1,6 @@
-import  { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import Category from "./Category";
+import Category from "../Pages/Category";
 import axios from "axios";
 
 const Navbar = () => {
@@ -56,6 +56,8 @@ const Navbar = () => {
             ))}
           </div>
         </div>
+
+        <div className="col-span-2"></div>
       </div>
     </div>
   );

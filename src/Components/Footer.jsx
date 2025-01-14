@@ -16,7 +16,7 @@ const Footer = () => {
       try {
         const data = await fetchFooterItems(); // Use the imported function
         const transformedData = {};
-        data.forEach((section) => {
+        data?.forEach((section) => {
           transformedData[section.headersection] = section.Items;
         });
         setFooterData(transformedData);

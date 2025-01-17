@@ -1,23 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Searchbar from "./Searchbar";
+
 const Topbar = () => {
   const navigate = useNavigate();
+  const [logoUrl, setLogoUrl] = useState("");
+
+  useEffect(() => {
+    fetch("http://localhost:3000/logo/getlogo")
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success && data.data.length > 0) {
+          setLogoUrl(data.data[0].imageurl);
+        }
+      })
+      .catch((error) => console.error("Error fetching logo:", error));
+  }, []);
+
   return (
-    <div className=" p-5">
-      <div className="grid grid-cols-12 gap-4">
-        <div className="col-span-3 md:justify-items-center my-auto  text-center">
-          logo
+    <div className="p-5">
+      <div className="grid grid-cols-12 gap-4 ">
+        <div className="col-span-3  text-center">
+          {logoUrl ? (
+            <img
+              src={logoUrl}
+              alt="Logo"
+              className=" w-[500px] h-[60px] object-contain"
+            />
+          ) : (
+            "Logo"
+          )}
         </div>
 
-        <div className="col-span-6  ">
+        <div className="col-span-6  mt-3">
           <Searchbar />
         </div>
 
-        <div className="col-span-3 text-center flex justify-center my-auto gap-2 md:gap-7">
+        <div className="col-span-3 text-center flex justify-center my-auto gap-2  md:gap-7">
           <div
             onClick={() => navigate("/profile")}
-            className="cursor-pointer  hover:bg-yellow-700"
+            className="cursor-pointer hover:bg-yellow-700  rounded-md"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -33,7 +55,7 @@ const Topbar = () => {
           </div>
           <div
             onClick={() => navigate("/wishlist")}
-            className="cursor-pointer  hover:bg-yellow-700 "
+            className="cursor-pointer hover:bg-yellow-700  rounded-md"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -49,7 +71,7 @@ const Topbar = () => {
           </div>
           <div
             onClick={() => navigate("/cart")}
-            className="cursor-pointer  hover:bg-yellow-700"
+            className="cursor-pointer hover:bg-yellow-700  rounded-md"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

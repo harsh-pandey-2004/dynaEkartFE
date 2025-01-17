@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { fetchCategories } from "../network/fetchCategories"; // Adjust the path based on your folder structure
+import { fetchCategories } from "../network/fetchCategories";
 
 const Category = () => {
   const [isOpen, setIsOpen] = useState(false);

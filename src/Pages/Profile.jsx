@@ -1,12 +1,8 @@
 import React from "react";
-import Login from "../componants/Login";
+import Login from "../components/Login";
 
 const Profile = () => {
-  return (
-   <>
-   {<Login/>}
-   </>
-  )
-}
+  return <>{<Login />}</>;
+};
 
-export default Profile
+export default Profile;

@@ -18,6 +18,7 @@ const Topbar = () => {
   }, []);
 
   return (
+<<<<<<< HEAD
     <div className="p-5">
       <div className="grid grid-cols-12 gap-4 ">
         <div className="col-span-3  text-center">
@@ -41,6 +42,21 @@ const Topbar = () => {
             onClick={() => navigate("/profile")}
             className="cursor-pointer hover:bg-yellow-700  rounded-md"
           >
+=======
+    <div className=" p-5">
+      <div className="grid grid-cols-12 gap-4">
+        {/* logo*/}
+        <div className="col-span-3 md:justify-items-center justify-between  text-center">
+          logo
+        </div>
+        {/* saearch */}
+        <div className="col-span-6  ">
+          <Searchbar />
+        </div>
+        {/* icon */}
+        <div className="col-span-3 text-center flex justify-center gap-2 md:gap-7">
+          <div>
+>>>>>>> e1339b2870aae3132a2a46f6055146259d05bf3a
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24px"

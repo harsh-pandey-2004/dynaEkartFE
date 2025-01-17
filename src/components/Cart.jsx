@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { FaCheck } from "react-icons/fa6";
-// import { RxCross2 } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
+import { MdDeleteForever } from "react-icons/md";
+import { toast } from "react-toastify";
 import { GrAddCircle, GrSubtractCircle } from "react-icons/gr";
 
 const Cart = () => {
-  // const [stock, setStock] = useState(null);
   const [products, setProducts] = useState([
     {
       id: 1,
@@ -15,7 +16,7 @@ const Cart = () => {
       category: "Mobile",
       price: 600,
       quantity: 1,
-      stock: false,
+      stock: true,
       discount: 20,
     },
     {
@@ -27,16 +28,10 @@ const Cart = () => {
       category: "Speaker",
       price: 120,
       quantity: 1,
-      stock: true,
+      stock: false,
       discount: 10,
     },
   ]);
-
-  // const stockView = () => {
-  //   products.stock
-  //     ? setStock(<FaCheck className="text-green-600" />)
-  //     : setStock(<RxCross2 className="text-red-600" />);
-  // };
 
   const increaseQuantity = (id) => {
     setProducts((prevProducts) =>
@@ -46,15 +41,23 @@ const Cart = () => {
           : product
       )
     );
+    toast.success("Quantity Increased!");
   };
 
   const decreaseQuantity = (id) => {
     setProducts((prevProducts) =>
-      prevProducts.map((product) =>
-        product.id === id && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
+      prevProducts.map((product) => {
+        if (product.id === id && product.quantity > 1) {
+          toast.warn("Quantity Decreased!");
+          return { ...product, quantity: product.quantity - 1 };
+        } else if (product.id === id && product.quantity === 1) {
+          toast.error(
+            "You can't reduce quantity below one.If you want then remove this item."
+          );
+          return product;
+        }
+        return product;
+      })
     );
   };
 
@@ -73,6 +76,12 @@ const Cart = () => {
   const orderTotal =
     totalPrice + shippingEstimate + taxEstimate - discountTotal;
 
+  const removeProduct = (id) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== id)
+    );
+  };
+
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-12">
       <h1 className="text-3xl font-bold">Shopping Cart</h1>
@@ -90,7 +99,7 @@ const Cart = () => {
                   className="w-full border-2 border-blue-100 rounded-lg"
                 />
               </div>
-              <div className="w-full">
+              <div className="w-full relative">
                 <h1 className="text-md xl:text-lg font-semibold">
                   {product.title}
                 </h1>
@@ -103,7 +112,7 @@ const Cart = () => {
                 </p>
                 <div className="flex my-2 gap-6">
                   <p className="font-semibold text-blue-600">
-                    ${product.price}
+                    ₹{product.price}
                   </p>
                   <GrAddCircle
                     className="bg-gray-100 rounded-full size-6 cursor-pointer"
@@ -116,14 +125,24 @@ const Cart = () => {
                   />
                 </div>
                 <div className="flex">
-                  <FaCheck className="text-green-600 mt-1" />
+                  {product.stock ? (
+                    <FaCheck className="text-green-600 mt-1" />
+                  ) : (
+                    <RxCross2 className="text-red-600 mt-1" />
+                  )}
                   <p className="text-md">
                     {product.stock ? "In Stock" : "Out of Stock"}
                   </p>
                 </div>
                 <p className="text-md text-green-600 font-medium">
-                  You are saving ${product.discount}.00 upon purchase
+                  You are saving ₹{product.discount}.00 upon purchase
                 </p>
+                <div className="absolute top-0 right-0">
+                  <MdDeleteForever
+                    className="text-red-600 cursor-pointer size-7"
+                    onClick={() => removeProduct(product.id)}
+                  />
+                </div>
               </div>
             </div>
           ))}
@@ -132,30 +151,30 @@ const Cart = () => {
           <h4 className="font-bold text-2xl md:text-3xl">Order Summary :</h4>
           <div className="flex items-center justify-between my-4 border-b-2 pb-2 gap-2">
             <p className="text-gray-700">Subtotal</p>
-            <p className="text-black font-semibold">${totalPrice.toFixed(2)}</p>
+            <p className="text-black font-semibold">₹{totalPrice.toFixed(2)}</p>
           </div>
           <div className="flex items-center justify-between my-4 border-b-2 pb-2 gap-2">
             <p className="text-gray-700">Shipping estimate</p>
             <p className="text-black font-semibold">
-              ${shippingEstimate.toFixed(2)}
+              ₹{shippingEstimate.toFixed(2)}
             </p>
           </div>
           <div className="flex items-center justify-between my-4 border-b-2 pb-2 gap-2">
             <p className="text-gray-700">Tax estimate</p>
             <p className="text-black font-semibold">
-              ${taxEstimate.toFixed(2)}
+              ₹{taxEstimate.toFixed(2)}
             </p>
           </div>
           <div className="flex items-center justify-between my-4 border-b-2 pb-2 gap-2">
             <p className="text-black font-bold">Total Discount</p>
             <p className="text-black font-semibold">
-              ${discountTotal.toFixed(2)}
+              ₹{discountTotal.toFixed(2)}
             </p>
           </div>
           <div className="flex items-center justify-between my-4 gap-2">
             <p className="text-black text-xl font-bold">Order Total</p>
             <p className="text-blue-600 text-xl font-bold">
-              ${orderTotal.toFixed(2)}
+              ₹{orderTotal.toFixed(2)}
             </p>
           </div>
           <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-md">

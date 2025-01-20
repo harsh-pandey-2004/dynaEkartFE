@@ -11,6 +11,7 @@ import Account from "./components/Account";
 import Category from "./Pages/Category";
 import Footer from "./components/Footer";
 import Products from "./components/Product";
+import SingleBlog from "./Pages/SingleBlog";
 const App = () => {
   return (
     <>
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/category" element={<Category />} />
         <Route path="/product/:id" element={<Products />} />
+        <Route path="/singleblog" element={<SingleBlog />} />
       </Routes>
       <Footer />
     </>

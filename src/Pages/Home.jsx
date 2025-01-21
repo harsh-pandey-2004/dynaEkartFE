@@ -1,12 +1,13 @@
-import PopularProducts from "../componants/PopularProducts";
-import TopDeals from "../componants/TopDeals";
-import ProductBanner from "../componants/DiscountBanner";
-import BrandsWeDistribute from "../componants/BrandDistribute";
-import Imageslider from "./Imageslider";
+import React from "react";
+import PopularProducts from "../components/PopularProducts";
+import TopDeals from "../components/TopDeals";
+import ProductBanner from "../components/DiscountBanner";
+import BrandsWeDistribute from "../components/BrandDistribute";
+// import Slider from "../components/";
 const Home = () => {
   return (
     <>
-      {<Imageslider />}
+      {/* {<Slider />} */}
       {<PopularProducts />}
       {<TopDeals />}
       {<ProductBanner />}

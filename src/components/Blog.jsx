@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { fetchBlogs } from "../network/Blog"; // Import the API call
 import { toast } from "react-toastify";
 import { RotatingLines } from "react-loader-spinner";
+import { fetchBlogs } from "../network/Blog";
 
 const Blog = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchData = async () => {
-    try {
-      setLoading(true);
-      const blogs = await fetchBlogs();
-      setData(blogs);
-    } catch (error) {
-      setError(error.message);
-      toast.error(error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        setLoading(true);
+        const response = await fetchBlogs();
+        setData(response);
+      } catch (err) {
+        setError(err.message);
+        toast.error(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchData();
   }, []);
 

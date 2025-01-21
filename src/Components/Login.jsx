@@ -1,13 +1,45 @@
 import React, { useState } from "react";
+import axios from "axios";
 
 const Login = () => {
+  const [firstName, setFirstName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [otp, setOtp] = useState("");
-  const [isRegister, setIsRegister] = useState(false); 
+  const [isRegister, setIsRegister] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(""); 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); 
+
+    const formData = {
+      phoneNumber,
+      email,
+      password,
+      firstName: isRegister ? firstName : undefined, 
+    };
+
+    try {
+      let response;
+      if (isRegister) {
+        // Make API call for Registration with proper protocol (http://)
+        response = await axios.post("http://localhost:3000/user/register", formData);
+      } else {
+        // Make API call for Login
+        response = await axios.post("http://localhost:3000/user/login", formData);
+      }
+
+      if (response.status === 200) {
+        console.log("Success", response.data);
+      }
+    } catch (err) {
+      setError("An error occurred. Please try again."); // Handle error
+      console.error("Error", err);
+    } finally {
+      setLoading(false); // Stop loading
+    }
   };
 
   return (
@@ -17,16 +49,38 @@ const Login = () => {
           {isRegister ? "Register" : "Sign In"}
         </h2>
         <p className="text-center mb-6">
-          {isRegister ? "Create your account to continue" : "Please sign in to continue"}
+          {isRegister
+            ? "Create your account to continue"
+            : "Please sign in to continue"}
         </p>
 
         <form onSubmit={handleSubmit}>
+          {/* First Name (only visible when registering) */}
+          {isRegister && (
+            <div className="mb-4">
+              <label
+                htmlFor="firstName"
+                className="block text-sm font-medium text-gray-700"
+              >
+                First Name
+              </label>
+              <input
+                type="text"
+                id="firstName"
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter your first name"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                required
+              />
+            </div>
+          )}
+
+          {/* Phone Number or Email */}
           <div className="mb-4">
             <label
               htmlFor="phone"
               className="block text-sm font-medium text-gray-700"
-
-
             >
               Phone Number
             </label>
@@ -40,60 +94,57 @@ const Login = () => {
               required
             />
           </div>
-          {!isRegister && (
-            <div className="mb-4">
-              <button className="bg-blue-500 text-white font-semibold p-2 rounded-md">
-                Send OTP
-              </button>
-            </div>
-          )}
 
+          {/* Email (only visible when registering) */}
           {isRegister && (
             <div className="mb-4">
               <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-600"
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
               >
-                Password
+                Email
               </label>
               <input
-                type="password"
-                id="password"
+                type="email"
+                id="email"
                 className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter your password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Enter your email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 required
               />
             </div>
           )}
 
-          {!isRegister && (
-            <div className="mb-6">
-              <label
-                htmlFor="otp"
-                className="block text-sm font-medium text-gray-600"
-              >
-                Enter OTP
-              </label>
-              <input
-                type="text"
-                id="otp"
-                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                placeholder="Enter OTP"
-                value={otp}
-                onChange={(e) => setOtp(e.target.value)}
-                required
-              />
-            </div>
-          )}
+          {/* Password */}
+          <div className="mb-4">
+            <label
+              htmlFor="password"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          {/* Error Message */}
+          {error && <p className="text-red-500 text-center">{error}</p>}
 
           {/* Submit Button */}
           <button
             type="submit"
             className="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            disabled={loading} // Disable button when loading
           >
-            {isRegister ? "Register" : "Login"}
+            {loading ? "Loading..." : isRegister ? "Register" : "Login"}
           </button>
 
           {/* Toggle between Login and Register */}

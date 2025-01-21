@@ -1,41 +1,188 @@
+import React, { useState } from "react";
+import { FaCheck } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
+import { MdDeleteForever } from "react-icons/md";
+import { toast } from "react-toastify";
+import { GrAddCircle, GrSubtractCircle } from "react-icons/gr";
+
 const Cart = () => {
+  const [products, setProducts] = useState([
+    {
+      id: 1,
+      image:
+        "https://images.unsplash.com/photo-1721864429288-f77b22fdc9ea?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHNhbXN1bmclMjBwaG9uZXxlbnwwfHwwfHx8MA%3D%3D",
+      title: "Samsung S23 ultra modern phone with AI",
+      brand: "Samsung",
+      category: "Mobile",
+      price: 600,
+      quantity: 1,
+      stock: true,
+      discount: 20,
+    },
+    {
+      id: 2,
+      image:
+        "https://images.unsplash.com/photo-1608488458196-61cd3a720de8?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fEpCTCUyMHNwZWFrZXJ8ZW58MHx8MHx8fDA%3D",
+      title: "JBL Speaker",
+      brand: "JBL",
+      category: "Speaker",
+      price: 120,
+      quantity: 1,
+      stock: false,
+      discount: 10,
+    },
+  ]);
+
+  const increaseQuantity = (id) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) =>
+        product.id === id
+          ? { ...product, quantity: product.quantity + 1 }
+          : product
+      )
+    );
+    toast.success("Quantity Increased!");
+  };
+
+  const decreaseQuantity = (id) => {
+    setProducts((prevProducts) =>
+      prevProducts.map((product) => {
+        if (product.id === id && product.quantity > 1) {
+          toast.warn("Quantity Decreased!");
+          return { ...product, quantity: product.quantity - 1 };
+        } else if (product.id === id && product.quantity === 1) {
+          toast.error(
+            "You can't reduce quantity below one.If you want then remove this item."
+          );
+          return product;
+        }
+        return product;
+      })
+    );
+  };
+
+  const totalPrice = products.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
+
+  const shippingEstimate = 25.0;
+  const taxEstimate = 15.0;
+  const discountTotal = products.reduce(
+    (total, product) => total + product.discount,
+    0
+  );
+
+  const orderTotal =
+    totalPrice + shippingEstimate + taxEstimate - discountTotal;
+
+  const removeProduct = (id) => {
+    setProducts((prevProducts) =>
+      prevProducts.filter((product) => product.id !== id)
+    );
+  };
+
   return (
-    <>
-      <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-12">
-        <h1 className="text-3xl font-bold">Shoping Cart</h1>
-        <div className="flex justify-center pt-6">
-          <div className="w-1/2">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non
-            aliquid possimus fugiat, eaque quisquam illo vel nulla, enim
-            doloribus impedit ex dolores. Amet, rerum natus iste dolore
-            adipisci, accusantium officiis at, consequuntur sint impedit
-            aspernatur. Officiis quae iure quam eos blanditiis voluptatibus
-            perspiciatis maxime? Recusandae maxime eos, ipsam fugiat impedit
-            odio fugit neque velit cupiditate doloribus? Adipisci aspernatur
-            repudiandae doloribus veritatis esse dolore est nostrum consequatur.
-            Natus eius porro error tempore explicabo recusandae amet eum
-            incidunt laborum voluptatum delectus, veniam sunt atque, nam et cum
-            necessitatibus itaque sint accusantium optio nobis ab eos! Animi
-            quis, commodi reprehenderit temporibus architecto amet, earum
-            dignissimos nemo aperiam tenetur consectetur repudiandae libero
-            exercitationem labore debitis magni hic veritatis eius ipsa omnis
-            assumenda eveniet quisquam! Provident, quisquam? Rerum, optio
-            commodi pariatur quia culpa quaerat atque maiores est nostrum
-            voluptatem aliquid nisi saepe quibusdam accusantium maxime obcaecati
-            cupiditate fugit quod debitis at corrupti cumque corporis. Esse
-            eaque nemo quis numquam deleniti eum modi cum molestiae porro
-            laudantium aliquid blanditiis libero ex fugit harum, quae impedit
-            molestias illo totam excepturi fugiat, ipsum reprehenderit!
-            Exercitationem autem maxime natus ipsa nisi temporibus, obcaecati
-            maiores asperiores officia. Officia officiis quibusdam neque earum
-            aperiam, voluptatem corporis rem deleniti, autem doloribus veniam.
+    <div className="container mx-auto px-4 sm:px-6 lg:px-16 py-12">
+      <h1 className="text-3xl font-bold">Shopping Cart</h1>
+      <div className="flex flex-col md:flex-row justify-center pt-6 gap-5">
+        <div className="md:w-2/3">
+          {products.map((product) => (
+            <div
+              key={product.id}
+              className="md:w-full border-t-2 border-b-2 flex items-center gap-4 p-6"
+            >
+              <div className="w-full md:w-1/2">
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-full border-2 border-blue-100 rounded-lg"
+                />
+              </div>
+              <div className="w-full relative">
+                <h1 className="text-md xl:text-lg font-semibold">
+                  {product.title}
+                </h1>
+                <p className="text-md mt-2 font-semibold">
+                  <span className="font-normal">Brand: </span> {product.brand}
+                </p>
+                <p className="text-md mt-1 font-semibold">
+                  <span className="font-normal">Category: </span>{" "}
+                  {product.category}
+                </p>
+                <div className="flex my-2 gap-6">
+                  <p className="font-semibold text-blue-600">
+                    ₹{product.price}
+                  </p>
+                  <GrAddCircle
+                    className="bg-gray-100 rounded-full size-6 cursor-pointer"
+                    onClick={() => increaseQuantity(product.id)}
+                  />
+                  <p className="font-semibold text-lg">{product.quantity}</p>
+                  <GrSubtractCircle
+                    className="bg-gray-100 rounded-full size-6 cursor-pointer"
+                    onClick={() => decreaseQuantity(product.id)}
+                  />
+                </div>
+                <div className="flex">
+                  {product.stock ? (
+                    <FaCheck className="text-green-600 mt-1" />
+                  ) : (
+                    <RxCross2 className="text-red-600 mt-1" />
+                  )}
+                  <p className="text-md">
+                    {product.stock ? "In Stock" : "Out of Stock"}
+                  </p>
+                </div>
+                <p className="text-md text-green-600 font-medium">
+                  You are saving ₹{product.discount}.00 upon purchase
+                </p>
+                <div className="absolute top-0 right-0">
+                  <MdDeleteForever
+                    className="text-red-600 cursor-pointer size-7"
+                    onClick={() => removeProduct(product.id)}
+                  />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <div className="bg-gray-100 md:w-1/3 py-6 px-6 2xl:px-20 rounded-xl">
+          <h4 className="font-bold text-2xl md:text-3xl">Order Summary :</h4>
+          <div className="flex items-center justify-between my-4 border-b-2 pb-2 gap-2">
+            <p className="text-gray-700">Subtotal</p>
+            <p className="text-black font-semibold">₹{totalPrice.toFixed(2)}</p>
           </div>
-          <div className="bg-gray-100 w-1/2 m-10 p-4 rounded-xl">
-            <h4 className="font-bold text-xl">Order Summary :</h4>
+          <div className="flex items-center justify-between my-4 border-b-2 pb-2 gap-2">
+            <p className="text-gray-700">Shipping estimate</p>
+            <p className="text-black font-semibold">
+              ₹{shippingEstimate.toFixed(2)}
+            </p>
           </div>
+          <div className="flex items-center justify-between my-4 border-b-2 pb-2 gap-2">
+            <p className="text-gray-700">Tax estimate</p>
+            <p className="text-black font-semibold">
+              ₹{taxEstimate.toFixed(2)}
+            </p>
+          </div>
+          <div className="flex items-center justify-between my-4 border-b-2 pb-2 gap-2">
+            <p className="text-black font-bold">Total Discount</p>
+            <p className="text-black font-semibold">
+              ₹{discountTotal.toFixed(2)}
+            </p>
+          </div>
+          <div className="flex items-center justify-between my-4 gap-2">
+            <p className="text-black text-xl font-bold">Order Total</p>
+            <p className="text-blue-600 text-xl font-bold">
+              ₹{orderTotal.toFixed(2)}
+            </p>
+          </div>
+          <button className="w-full bg-gray-700 hover:bg-gray-600 text-white py-2 rounded-md">
+            BUY NOW
+          </button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

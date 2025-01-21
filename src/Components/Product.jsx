@@ -149,16 +149,16 @@ const Products = () => {
                 {product?.name}
               </h1>
               <div className="flex items-center space-x-4 my-4">
-                <p className="text-lg line-through text-gray-700">$600.00</p>
+                <p className="text-lg line-through text-gray-700">₹8000.00</p>
                 <p className="text-xl font-semibold text-blue-600">
-                  {product?.price}
+                  ₹{product?.price}
                 </p>
               </div>
               <div className="text-md text-gray-700 mb-2">
                 <span>50 people are viewing this right now</span>
               </div>
               <p className="text-md text-green-600 font-medium">
-                You are saving $20.00 upon purchase
+                You are saving ₹20.00 upon purchase
               </p>
               <div className="mt-4">
                 <h3 className="font-medium text-gray-700">Color:</h3>
